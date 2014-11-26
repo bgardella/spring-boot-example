@@ -1,11 +1,8 @@
 package hello;
 
 
-import org.hamcrest.Matchers;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -16,11 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.roving.sopro.api.rs.v1.domain.SocialSyndicationType;
-import com.roving.sopro.mockdata.dto.SocialSyndicationActivity;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -29,7 +21,23 @@ import com.roving.sopro.mockdata.dto.SocialSyndicationActivity;
 @ContextConfiguration(classes = Application.class)
 public class TestApplication {
 
+    @Autowired
+    private PersonRepository respository;
+    
+    private static ConfigurableApplicationContext appContext;
+    
+    @BeforeClass
+    public static void startBootApp(){
+        appContext = SpringApplication.run(Application.class, "");
+    }
+    
+    @AfterClass
+    public static void shutdownBootApp(){
+        appContext.close();
+    }
 
-
+    
+    
+    
   
 }
